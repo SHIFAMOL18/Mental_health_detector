@@ -1,0 +1,95 @@
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for content */
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styles */
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+/* Login section styling */
+#login-section {
+    display: block;
+}
+
+#mental-health-section {
+    display: none; /* Hide by default */
+}
+
+input[type="email"],
+input[type="password"],
+input[type="radio"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+/* Radio button styles */
+input[type="radio"] {
+    width: auto;
+}
+
+/* Submit button styling */
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Notification message styling */
+.alert {
+    padding: 10px;
+    margin: 10px 0;
+    color: white;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    display: none; /* Hidden by default */
+}
+
+/* Style for the logout button */
+button.logout {
+    background-color: #f44336;
+    color: white;
+}
+
+button.logout:hover {
+    background-color: #e53935;
+}
+
+/* Hide form when not logged in */
+.logged-in #login-section {
+    display: none;
+}
+
+.logged-in #mental-health-section {
+    display: block;
+}

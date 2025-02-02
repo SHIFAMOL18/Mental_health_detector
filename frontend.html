@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Self-Assessment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .questionnaire {
+            display: none;
+        }
+
+        .results {
+            display: none;
+        }
+
+        .results ul {
+            list-style: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="registerForm">
+    <h2>Register</h2>
+    <form id="registrationForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="javascript:void(0)" onclick="showLogin()">Login here</a></p>
+</div>
+
+<div class="container" id="loginForm" style="display:none;">
+    <h2>Login</h2>
+    <form id="loginFormSubmit">
+        <label for="loginEmail">Email:</label>
+        <input type="email" id="loginEmail" name="loginEmail" required>
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required>
+
+        <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="javascript:void(0)" onclick="showRegister()">Register here</a></p>
+</div>
+
+<div class="container questionnaire" id="questionnaire">
+    <h2>Mental Health Questionnaire</h2>
+    <form id="questionnaireForm">
+        <label>1. Do you feel constantly tired?</label><br>
+        <input type="radio" name="q1" value="yes"> Yes
+        <input type="radio" name="q1" value="no"> No<br><br>
+
+        <label>2. Have you lost interest in things you used to enjoy?</label><br>
+        <input type="radio" name="q2" value="yes"> Yes
+        <input type="radio" name="q2" value="no"> No<br><br>
+
+        <label>3. Do you often feel anxious or worried?</label><br>
+        <input type="radio" name="q3" value="yes"> Yes
+        <input type="radio" name="q3" value="no"> No<br><br>
+
+        <label>4. Do you have trouble sleeping?</label><br>
+        <input type="radio" name="q4" value="yes"> Yes
+        <input type="radio" name="q4" value="no"> No<br><br>
+
+        <label>5. Do you find it difficult to focus?</label><br>
+        <input type="radio" name="q5" value="yes"> Yes
+        <input type="radio" name="q5" value="no"> No<br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<div class="container results" id="results">
+    <h2>Results</h2>
+    <p id="resultText"></p>
+    <ul>
+        <li><strong>Exhaustion:</strong> It seems like you might be feeling fatigued. Consider taking rest, staying hydrated, and reducing stress levels.</li>
+        <li><strong>Depression:</strong> You may be experiencing symptoms of depression. It’s important to talk to a professional for further assistance.</li>
+        <li><strong>Anxiety:</strong> It seems you might be facing anxiety. Practices like meditation, mindfulness, and seeking therapy may help.</li>
+    </ul>
+    <button onclick="restartQuiz()">Restart</button>
+</div>
+
+<script>
+    let currentStep = 'register'; // track current step
+
+    // Show Register Form
+    function showRegister() {
+        document.getElementById('registerForm').style.display = 'block';
+        document.getElementById('loginForm').style.display = 'none';
+    }
+
+    // Show Login Form
+    function showLogin() {
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('registerForm').style.display = 'none';
+    }
+
+    // Show Questionnaire Form
+    function showQuestionnaire() {
+        document.getElementById('questionnaire').style.display = 'block';
+        document.getElementById('loginForm').style.display = 'none';
+    }
+
+    // Show Results
+    function showResults(result) {
+        document.getElementById('results').style.display = 'block';
+        document.getElementById('questionnaire').style.display = 'none';
+        document.getElementById('resultText').textContent = result;
+    }
+
+    // Handle Registration
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // prevent form submission
+
+        // Get data
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Normally, this data would be sent to a server to create an account
+        // Simulating successful registration and moving to the login page
+        alert('Registration successful!');
+        showLogin();
+    });
+
+    // Handle Login
+    document.getElementById('loginFormSubmit').addEventListener('submit', function(event) {
+        event.preventDefault(); // prevent form submission
+
+        // Simulate login validation
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+
+        // For this example, just assume login is successful if email and password are filled
+        if (email && password) {
+            alert('Login successful!');
+            showQuestionnaire();
+        } else {
+            alert('Invalid credentials. Please try again.');
+        }
+    });
+
+    // Handle Questionnaire Submission
+    document.getElementById('questionnaireForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // prevent form submission
+
+        // Get answers and calculate result
+        const q1 = document.querySelector('input[name="q1"]:checked');
+        const q2 = document.querySelector('input[name="q2"]:checked');
+        const q3 = document.querySelector('input[name="q3"]:checked');
+        const q4 = document.querySelector('input[name="q4"]:checked');
+        const q5 = document.querySelector('input[name="q5"]:checked');
+
+        const answers = [q1, q2, q3, q4, q5];
+        const score = answers.filter(ans => ans && ans.value === 'yes').length;
+
+        let result;
+        if (score >= 4) {
+            result = "You might be suffering from exhaustion.";
+        } else if (score >= 2) {
+            result = "You might be suffering from anxiety.";
+        } else {
+            result = "You might be suffering from depression.";
+        }
+
+        showResults(result);
+    });
+
+    // Restart the quiz
+    function restartQuiz() {
+        showRegister();
+        document.getElementById('results').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
